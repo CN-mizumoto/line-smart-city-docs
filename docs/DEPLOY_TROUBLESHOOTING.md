@@ -41,6 +41,10 @@ deploy/secrets_manager/環境名.json
 
 ```
 3. 環境の更新
+1.10.0以降
+./lsc.sh deploy
+
+1.9.1以前
 ./lsc.sh refresh --secrets
 ```
 
@@ -194,6 +198,10 @@ deploy/secrets_manager/環境名.json
 
 ```
 3. 環境の更新
+1.10.0以降
+./lsc.sh deploy
+
+1.9.1以前
 ./lsc.sh refresh --secrets
 ```
 
@@ -209,6 +217,10 @@ $ aws --version
 2. AWS CLIバージョンが1系の場合、バージョンアップする
 
 3. 初期構築のコマンドを実行する
+1.10.0以降
+$ ./lsc.sh deploy
+
+1.9.1以前
 $ ./lsc.sh setup
 ```
 
@@ -227,6 +239,10 @@ $ pip list
 $ pip install wheel setuptools
 
 3. 初期構築のコマンドを実行する
+1.10.0以降
+$ ./lsc.sh deploy
+
+1.9.1以下の場合
 $ ./lsc.sh setup
 ```
 
@@ -234,5 +250,9 @@ $ ./lsc.sh setup
 [Docker](https://www.docker.com/products/docker-desktop)をインストールして起動し、`--useContainer`オプションを付けて実行してください。
    
 ```bash
+1.10.0以降
+$ ./lsc.sh deploy --useContainer
+
+1.9.1以前
 $ ./lsc.sh setup --useContainer
 ```

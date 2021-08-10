@@ -22,13 +22,13 @@
 
 お持ちのメールアドレスを入力し、「Verify This Email Address」をクリックします。
 
-※ここで入力するメールアドレスは、[損傷報告先メールアドレスの設定](./FOR_DEVELOPERS.md#4-損傷報告先メールアドレスの設定)で設定するメールアドレスである必要があります。
+※ここで入力するメールアドレスは、[損傷報告先メールアドレスの設定](../README.md#4-損傷報告先メールアドレスの設定)で設定するメールアドレスである必要があります。
 
 メールアドレスに届いた認証メール内のリンクをクリックして認証完了です。
 
 ### 2. 外部配信設定でメール連携をする場合
 
-上記「Email Address」入力欄に、[シークレット修正](./FOR_DEVELOPERS.md#2-設定情報の反映)で設定した`DISTRIBUTION_TRIGGER_EMAIL`のメールアドレスを入力し、「Verify This Email Address」をクリックします。
+上記「Email Address」入力欄に、[シークレット修正](../README.md#2-設定情報の反映)で設定した`DISTRIBUTION_TRIGGER_EMAIL`のメールアドレスを入力し、「Verify This Email Address」をクリックします。
 
 「Verify This Email Address」をクリック後、認証メールがCloudWatchへ転送されますので、そちらを確認する必要があります。
 
