@@ -48,7 +48,6 @@
     | エンドポイントURL | エンドポイントのURL | 任意 | `https://dummy` などを設定して後で変更する |
     | Scopes | LIFFアプリのサイズ | 「openid、profile、chat_message.write」の3つにチェック<br>※「chat_message.write」は、View allをタップすると表示されます |  |
     | ボットリンク機能 | LINE公式アカウントを友達として追加する際の表示オプション<br />参考：[LINEログインしたときにLINE公式アカウントを友だち追加する（ボットリンク）](https://developers.line.biz/ja/docs/line-login/link-a-bot/) | OFF |  |
-    | LIFF URLの追加情報の処理方法 | LIFF URLの追加情報の処理方法。登録後に変更可能 | Concatenate |  |
     
     * 追加ボタンを押す
 

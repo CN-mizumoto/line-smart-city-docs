@@ -34,7 +34,7 @@
 | DISTRIBUTION_MSG_CHANNEL_ACCESS_TOKEN        | 配信モジュールで利用するLINE MessagingAPIのチャネルアクセストークン |                                                                  | `AB9Cd3efg (中略) 1O/abCD=`                                   |
 | DISTRIBUTION_MSG_CHANNEL_SECRET              | (配信モジュールで利用) LINE MessagingAPIのチャネルシークレット |                                                                  | `123abcde (中略) 012345`                                      |
 | DISTRIBUTION_EMAIL_WHITELIST              | (配信モジュールで利用) メール送信先のホワイトリスト（カンマ区切りで複数設定が可能）    |                                                                  | `xxx@example.com,yyy@example.com`                                               |
-| DISTRIBUTION_TRIGGER_EMAIL | (配信モジュールの外部配信で利用) 受信メールアドレス | | `receive-mail@example.com` |
+| DISTRIBUTION_TRIGGER_EMAIL | (配信モジュールの外部配信で利用) 受信メールアドレス | 入力しなかった場合、初回デプロイ時にデフォルト値`receive-mail@環境名.ルートドメイン`が設定される<br />**カスタムドメインを有効にしていない場合は外部配信機能は利用できません** | `receive-mail@example.com` |
 | DISTRIBUTION_RESOURCES_BUCKET | 配信用画像がアップロードされるS3バケット名 | `./lsc.sh`により自動で設定される | `lsc-fukuoka-dev-distribution-distributionresources-u123abcdefg` |
 | GENERAL_APP_VERSION              | バーション情報                                      |                                                                  | 1.0.0                                                        |
 | DNS_DOMAIN | (カスタムドメイン有効時に利用) ルートドメイン | | `example.com` |
@@ -43,3 +43,7 @@
 | SLACK_WEBHOOK_URL | Slack AppのWebhook URL | AWS Lambdaのエラー通知に利用 | `https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX` |
 | AWS_SES_EMAIL_DOMAIN | AWS SESサービスに登録されている有効なメールドメイン。 損傷報告のメールを送信するために使用されます。|　| `環境名.line-smartcity.com` |
 | ACCESS_LOG_BUCKET | 他のS3バケットのアクセスログを保管するためのバケット名 |　| `環境名-logs-0123456789` |
+| CHATBOT_TRASH_SEPARATION_FUZZY_SEARCH | ゴミ分別シナリオのあいまい検索を有効または無効にします（本番チャネル） |　| 1 -> 有効 0 -> 無効 |
+| SB_CHATBOT_TRASH_SEPARATION_FUZZY_SEARCH | ゴミ分別シナリオのあいまい検索を有効または無効にします（サンドボックスチャネル） |　| 1 -> 有効 0 -> 無効 |
+| VUE_APP_MEMBERS_TAB | 会員帳票機能を有効・無効を切り替え | デフォルトは無効 | 1 -> 有効、0 -> 無効 |
+

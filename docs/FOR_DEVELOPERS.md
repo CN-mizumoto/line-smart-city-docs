@@ -96,7 +96,8 @@ $ ./lsc.sh -e 環境名 -p プロファイル名 secrets create
 | 9 | 共通 | SURVEY_LINELOGIN_CHANNEL_SECRET | LINEログインのチャネルシークレット | |
 | 10 | 共通 | DISTRIBUTION_MSG_CHANNEL_ACCESS_TOKEN | LINE Messaging APIのチャネルアクセストークン | 1と同じ値 |
 | 11 | 共通 | DISTRIBUTION_MSG_CHANNEL_SECRET | LINE Messaging APIのチャネルシークレット | 3と同じ値 |
-| 12 | 共通 | DISTRIBUTION_TRIGGER_EMAIL | セグメント配信で利用する受信メールアドレス。「任意の文字 + `@環境名.ルートドメイン (example.com など)`」を入力 | 入力例：`mail@lsc-fukuoka-dev.line-smartcity.com` |
+| 12 | 共通 | DISTRIBUTION_TRIGGER_EMAIL | セグメント配信で利用する受信メールアドレス。「任意の文字 + `@環境名.ルートドメイン (example.com など)`」を入力 | 入力例：`mail@lsc-fukuoka-dev.line-smartcity.com`<br />入力しなかった場合、デプロイ時にデフォルト値`receive-mail@環境名.ルートドメイン`が設定されます<br />**カスタムドメインを有効にしていない場合は外部配信機能は利用できません** |
+| 13 | 共通 | VUE_APP_MEMBERS_TAB | 会員帳票機能の有効・無効を切り替え | 有効にする場合`1`に変更 |
 
 * 参考：Secrets Managerで設定している値の詳細は、「[環境変数](./docs/LSC_ENVIRONMENT_VARIABLES.md)」を確認してください。
 
@@ -131,6 +132,8 @@ $ ./lsc.sh deploy
     *  ```bash
        $ ./lsc.sh deploy --useContainer
        ```
+    
+* オプションの詳細は「[開発用コマンド一覧](./docs/LSC_COMMANDS.md#3-コマンド即座に実行)」をご確認ください。
 
 #### 3. LINE Developersのチャネル設定変更
 LINE Developersに戻り、下記の手順に従ってチャネルの設定を行ってください。
@@ -166,7 +169,7 @@ $ ./lsc.sh users
 * `Input password` では、パスワードを英数字8文字以上で入力します。
 * `Select Groups` でユーザーに追加するグループを選択します。
     * 上下キーで移動してスペースキーでグループ名を選択します。
-    * デフォルトでは `admins` が選択されています。（今後`Administrator:admins` に変更される予定です）
+    * デフォルトでは `Administrator:admins` が選択されています。（1.6.2以下のバージョンでは`admins` です）
     * 古いグループ名 `admins`, `members`, `guests`, `operators`, `develop` が存在する場合がありますが、非推奨のため選択しないようお願いします。
     * `Select Groups`の選択が完了後、Enterキーで確定します。
     * グループ名は「所属チーム名:付与権限」で構成されます。
@@ -245,6 +248,9 @@ LINE公式アカウントを利用できる状態にするため、シナリオ�
 「[カレンダー機能の分類ID削除について](./docs/LSC_ADMIN_DELETE_CALENDAR_CATEGORY.md)」をご参照ください。
 
 ## 4. バージョンアップについて
+
+数世代前の旧バージョンから最新版にバージョンアップする場合、  
+事前に「[LINE SMART CITY GovTechプログラム：マイグレーション](./docs/LSC_MIGRATIONS.md)」をご参照ください。
 
 ### 1. リモートリポジトリの変更内容を取り込む
 

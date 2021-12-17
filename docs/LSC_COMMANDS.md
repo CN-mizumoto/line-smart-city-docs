@@ -107,6 +107,8 @@ $ ./lsc.sh deploy
 
 * `--useContainer` : SAMをビルドする際にDockerコンテナを利用します
 * `--enable-termination-protection` : CloudFormationスタックの削除保護を有効にします
+* `--xray-trace` : X-Rayによるトレースの有無を設定します
+* `--kms-encrypt` : KMSによる暗号化の有無を設定します
 
 ### 全環境の削除
 

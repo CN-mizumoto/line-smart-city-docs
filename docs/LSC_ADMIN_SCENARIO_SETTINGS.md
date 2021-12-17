@@ -5,12 +5,12 @@
     - [1-1. シナリオのインポート](#1-1-シナリオのインポート)
     - [1-2. バージョン切替 （サンドボックス）](#1-2-バージョン切替-サンドボックス)
     - [1-3. バージョン切替 （本番）](#1-3-バージョン切替-本番)
-  - [2. LINE公式アカウントの設定](#2-line公式アカウントの設定)
-    - [2-1. LINE Official Account Managerにログイン](#2-1-line-official-account-managerにログイン)
-    - [2-2. リッチメニューの確認](#2-2-リッチメニューの確認)
-    - [2-3. 友だち追加](#2-3-友だち追加)
-    - [2-4. プロフィール設定および公開](#2-4-プロフィール設定および公開)
-    - [2-5. 設定 アカウントやプランの設定について](#2-5-設定-アカウントやプランの設定について)
+  - [2. リッチメニュー作成](#2-リッチメニュー作成)
+  - [3. LINE公式アカウントの設定](#3-line公式アカウントの設定)
+    - [3-1. LINE Official Account Managerにログイン](#3-1-line-official-account-managerにログイン)
+    - [3-2. 友だち追加](#3-2-友だち追加)
+    - [3-3. プロフィール設定および公開](#3-3-プロフィール設定および公開)
+    - [3-4. 設定 アカウントやプランの設定について](#3-4-設定-アカウントやプランの設定について)
 
 ## 1. シナリオ設定
 
@@ -45,24 +45,25 @@
 * 有効バージョンと異なるバージョンを選択
 * 「有効にする」ボタンをクリックして、選択したバージョンを有効にする
 
-## 2. LINE公式アカウントの設定
-### 2-1. LINE Official Account Managerにログイン
+## 2. リッチメニュー作成
+
+リッチメニューの作成手順については[こちら](https://docs.line-smartcity.org/85356e85da49445c9e521f2007fe06cd)をご確認ください。
+
+## 3. LINE公式アカウントの設定
+
+### 3-1. LINE Official Account Managerにログイン
 * [LINE Official Account Manager](https://manager.line.biz/)にログインします
 * アカウントリストより、[LINE Developers](https://developers.line.biz/ja/) で作成したMessaging API Channelの「アカウント」を選択
 
-### 2-2. リッチメニューの確認
-* ホームメニューから「リッチメニュー」を選択
-    * 詳細は「[リッチメニュー ](https://www.linebiz.com/jp/manual/OfficialAccountManager/rich-menus/create/)」を参照
-
-### 2-3. 友だち追加
+### 3-2. 友だち追加
 * ホームメニューから「友だち追加」を選択
     * 詳細は「[友だち追加](https://www.linebiz.com/jp/manual/OfficialAccountManager/gain-friends/overview/)」を参照
 
-### 2-4. プロフィール設定および公開
+### 3-3. プロフィール設定および公開
 * プロフィールメニューを選択
     * 詳細は「[プロフィール](https://www.linebiz.com/jp/manual/OfficialAccountManager/account-page/settings/)」を参照
 
-### 2-5. 設定 アカウントやプランの設定について
+### 3-4. 設定 アカウントやプランの設定について
 * 設定を選択
     * 詳細は「[設定 アカウントやプランの設定について](https://www.linebiz.com/jp/manual/OfficialAccountManager/settings/overview/)」を参照
     * プランについては「[料金プラン](https://www.linebiz.com/service/line-official-account/plan/)」を参照

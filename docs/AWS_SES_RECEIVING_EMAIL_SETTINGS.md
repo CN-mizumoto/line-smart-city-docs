@@ -1,59 +1,61 @@
 # SESの受信メールアドレス設定
 
-## メールアドレスの追加
+## 目次
+- [1. 損傷報告を受け取るメールアドレスの設定](#1-損傷報告を受け取るメールアドレスの設定)
+- [2. 外部配信設定でメール連携をする場合](#2-外部配信設定でメール連携をする場合)
+- [3. セキュリティ設定](#3-セキュリティ設定)
+  - [3-1. 外部配信設定でメール連携をする場合](#3-1-外部配信設定でメール連携をする場合)
 
-環境構築のコマンド実施後にAmazon SES （以下、「SES」）の設定を実施してください。
+## 1. 損傷報告を受け取るメールアドレスの設定
 
-[SES コンソール](https://us-west-2.console.aws.amazon.com/ses/home?region=us-west-2#verified-senders-email:)で設定をします。必ずリージョンが「オレゴン」になっていることを確認してください。
+環境構築のコマンド実施後にAmazon SES （以下、「SES」）の設定を実施してください。カスタムドメインの有無によって設定内容が異なります。
 
-* 「Verify a New Email Address」ボタンをクリック
+### 1-1. カスタムドメインを有効にしている場合
 
-* 「Email Address」入力欄にメールアドレスを入力し「Verify This Email Address」をクリック
+バージョン1.15.0よりSESメールアドレス設定は自動化されたため認証作業は不要ですが、
+外部のメールアドレスに送信できるようにするためにSESアカウントをサンドボックス外に移動する必要があります。
 
-* 追加するメールアドレスは2種類あります。
+はじめに[SESアカウント](https://us-west-2.console.aws.amazon.com/sesv2/home?region=us-west-2#/account)にアクセスします。必ずリージョンが「オレゴン」になっていることを確認してください。
 
-  * [1. 損傷報告のメールアドレス設定](#1-損傷報告のメールアドレス設定)
+![](./images/ses-email-production-access-request-1.png)
 
-  * [2. 外部配信設定でメール連携をする場合のメールアドレス設定](#2-外部配信設定でメール連携をする場合)（セグメント配信にて、外部配信を利用する場合のみ設定）
+「Request production access」をクリックします。
 
-![SES メールアドレスアイデンティティ](./images/ses-email-identity.png)
+![](./images/ses-email-production-access-request-2.png)
 
-### 1. 損傷報告のメールアドレス設定
+1. Mail type：「Transactional」を選択
+2. Website URL：LINEの友だちページURLを入力 ※リッチメニューやシナリオが設定済みであること
+3. Use case description：「LINEと連携したWEBサービスでSESによるメールの送信を実装するため」と入力
+4. 利用規約に同意するチェックボックスにチェック
+5. リクエストを送信
 
-お持ちのメールアドレスを入力し、「Verify This Email Address」をクリックします。
+リクエスト送信後、24時間以内にサポートからのフィードバックを受け取ります。
 
-※ここで入力するメールアドレスは、[損傷報告先メールアドレスの設定](../README.md#4-損傷報告先メールアドレスの設定)で設定するメールアドレスである必要があります。
+### 1-2. カスタムドメインを無効にしている場合
 
-メールアドレスに届いた認証メール内のリンクをクリックして認証完了です。
+[SES コンソール](https://us-west-2.console.aws.amazon.com/sesv2/home?region=us-west-2#/verified-identities)で設定をします。必ずリージョンが「オレゴン」になっていることを確認してください。
 
-### 2. 外部配信設定でメール連携をする場合
+![](./images/ses-email-identity-1.png)
 
-上記「Email Address」入力欄に、[シークレット修正](../README.md#2-設定情報の反映)で設定した`DISTRIBUTION_TRIGGER_EMAIL`のメールアドレスを入力し、「Verify This Email Address」をクリックします。
+「Create identity」をクリックします。
 
-「Verify This Email Address」をクリック後、認証メールがCloudWatchへ転送されますので、そちらを確認する必要があります。
+![](./images/ses-email-identity-2.png)
 
-[CloudWatch Logs インサイト](https://ap-northeast-1.console.aws.amazon.com/cloudwatch/home?region=ap-northeast-1#logsV2:logs-insights)にアクセスします。
+1. Identity type：「Email address」を選択
+2. Email address：お持ちのメールアドレスを入力
+    * ここで入力するメールアドレスは、[損傷報告先メールアドレスの設定](../README.md#4-損傷報告先メールアドレスの設定)で設定するメールアドレスである必要があります
+3. 「Create identity」をクリック
+4. メールアドレスに届いた認証メール内のリンクをクリックして認証完了です。
 
-* (1)：ロググループは`/aws/lambda/環境名-distribution-manager`を選択
+## 2. 外部配信設定でメール連携をする場合
 
-* (2)：クエリは下記を入力
+カスタムドメインを有効化している場合、バージョン1.15.0よりSESメールアドレス設定は自動化されたため作業は不要です。
 
-  * ```
-    fields @body
-    | sort @timestamp desc
-    | filter @message like /Email Address Verification/
-    | parse @message "body\": \"*from" as @body
-    ```
+カスタムドメインを無効にしている場合、本機能は利用することができません。
 
-* (3)：「クエリの実行」をクリック
+## 3. セキュリティ設定
 
-* (4)：レコードが表示されたら「結果をエクスポート」をクリックし、「テーブルをクリップボードにコピー (CSV)」をクリック
+### 3-1. 外部配信設定でメール連携をする場合
 
-![Verifying an email address](./images/distribution-mail-verification-1.png)
-
-レコードがクリップボードにコピーされますので、以下のようにテキストエディタ等に貼り付けます。
-
-6行目付近に記載の認証リンクにアクセスすることで、メール認証が完了します。
-
-![Verifying an email address](./images/distribution-mail-verification-2.png)
+「[セグメント配信の外部配信設定で送信元メールアドレスを制限する](./AWS_EMAIL_WHITELIST_SETTINGS.md)」をご参照ください。
 
